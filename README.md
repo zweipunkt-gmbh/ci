@@ -1,8 +1,35 @@
 # CI-Tool von ZweiPunkt GmbH
 
-### Deine Agentur für ein erfolgreiches Online Projekt
-### Als Full-Service Shopware Agentur bieten wir Dir alles aus einer Hand. Wir betreuen Dich und Dein Projekt von Beginn an und sorgen für den erfolgreichen Start Deines E-Commerce Projektes.
+### Ihre Agentur für ein erfolgreiches Online Projekt
+### Als Full-Service Shopware Agentur bieten wir Ihnen alles aus einer Hand. Wir betreuen Sie und Ihr Projekt von Beginn an und sorgen für den erfolgreichen Start Ihres E-Commerce Projektes.
 
-In dieser DockerApp haben wir die CI-Tools phpstand, phpmd, phpcs und phpunit eingebunden.
-Mit dem Befehl 'docker pull zweipunkt/ci' laden sie sich das Image herunter. Mit 'docker run -v {PATH/TO/CODE}:/usr/src/myapp/source zweipunkt/ci:1.0.0' führen sie das Image aus und starten den Container.
-Den Rest erledigt die Anwendung für Sie!
+Mit dieser Docker Application automatisieren Sie die Überprüfung des Quelltextes.
+### Verwendete PHP Prüfapplikationen
+Tool | Version
+------------ | -------------
+PhpStan | 1.4.10
+PphUnit | 9.5.19
+PphMD | 2.11.1
+Pph_CodeSniffer | 3.6.2
+
+## First Steps
+```bash
+docker pull zweipunkt/ci
+```
+Mit diesem Befehl wir das Image aus dem Dockerhub heruntergeladen.
+
+```bash
+docker run --rm -it -v /paht/on/host:/src zweipunkt/ci bash
+```
+Startet den Container mit der bash-shell und mappt das Host-Verzeichnis in /src im Container
+
+```bash
+nano run.sh
+```
+ber diesen Beehl müssen Sie das run Script bearbeiten und den Pfad für PhpMD eintragen der Überprüft werden soll.
+
+Nur noch 
+```bash
+./run.sh
+```
+und sie erhalten nach kurzer Zeit ein Report über die im Quelltext vorhanden Fehler.
