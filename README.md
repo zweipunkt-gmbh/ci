@@ -7,26 +7,26 @@ Mit dieser Docker Application automatisieren Sie die Überprüfung des Quelltext
 ### Verwendete PHP Prüf-Applicationen
 Tool | Version
 ------------ | -------------
-PhpStan | 1.4.10
-PphUnit | 9.5.19
-PphMD | 2.11.1
-Pph_CodeSniffer | 3.6.2
+PHPStan | 1.4.10
+PHPUnit | 9.5.19
+PHPMD | 2.11.1
+PHP_CodeSniffer | 3.6.2
 
 ## First Steps
+Mit diesem Befehl wir das Image aus dem Dockerhub heruntergeladen.
 ```bash
 docker pull zweipunkt/ci
 ```
-Mit diesem Befehl wir das Image aus dem Dockerhub heruntergeladen.
 
+Startet den Container mit der bash-shell und mappt das Host-Verzeichnis in /src im Container
 ```bash
 docker run --rm -it -v /paht/on/host:/src zweipunkt/ci bash
 ```
-Startet den Container mit der bash-shell und mappt das Host-Verzeichnis in /src im Container
 
+Über diesen Beehl müssen Sie das run Script bearbeiten und den Pfad für PhpMD eintragen der Überprüft werden soll.
 ```bash
 nano run.sh
 ```
-ber diesen Beehl müssen Sie das run Script bearbeiten und den Pfad für PhpMD eintragen der Überprüft werden soll.
 
 Nur noch 
 ```bash
