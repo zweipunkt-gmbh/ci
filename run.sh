@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="/usr/src/myapp/source"
+DIR="/src/source"
 
 # check if source directory exists in the running container
 if [ ! -d "$DIR" ]
@@ -24,7 +24,7 @@ fi
 if [ ! -e phpmd.xml ]
 then
 # file exists run phpmd with memory limit of 4G
-  php -d memory_limit=4G vendor/bin/phpmd text source/phpmd.xml
+  php -d memory_limit=4G vendor/bin/phpmd /path/to/code ansi source/phpmd.xml
 else
 # file does not exist skip the test
   echo 'File phpmd.xml does not exist'
