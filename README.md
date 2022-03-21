@@ -20,7 +20,7 @@ PHP_CodeSniffer | 3.6.2
 
 2. Sie starten den Container mit einern Terminal/Konsole.
 ```bash
-  docker run --rm -it -v /paht/on/host:/src zweipunkt/ci bash
+  docker run --rm -it -v /paht/on/host:/src/source zweipunkt/ci bash
 ```
  - --rm -> entfert den Container nachdem er seine Aufgabe erfüllt hat
  -  -it -> interaktiver Container 
