@@ -33,7 +33,7 @@ PHP_CodeSniffer | 3.6.2
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;das Script bearbeiten in der Zeile bearbeiten.
 ```bash
-  php -d memory_limit=4G vendor/bin/phpmd /path/to/code ansi source/phpmd.xml
+  php -d memory_limit=4G vendor/bin/phpmd /source/public/custom/plugins/ZweiPunktRecall/ ansi source/phpmd.xml
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;Hierbei wird /path/to/code mit dem Pfad ersetzt wo der Quelltext liegt beginnend mit /src/source/.../.. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;Ist der Pfad richtig müssen folgende Shortcuts nacheinander gedrückt werden

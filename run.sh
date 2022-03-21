@@ -6,7 +6,7 @@ DIR="/src/source"
 if [ ! -d "$DIR" ]
 then
 # if the dir does not exist the script breaks
- echo 'Directory /usr/src/myapp/source does not exist.'
+ echo 'Directory /src/source does not exist.'
  exit 1
 fi
 

@@ -17,8 +17,7 @@ RUN composer require --dev phpunit/phpunit:9.5.19
 RUN composer require --dev squizlabs/php_codesniffer:3.6.2
 
 COPY run.sh /src
-RUN chmod +x run.sh
 
 LABEL maintainer ="ZweiPunkt GmbH <entwicklung@zwei.gmbh>"
 
-# RUN ./run.sh
+RUN chmod +x run.sh
