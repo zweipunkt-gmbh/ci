@@ -4,7 +4,7 @@
 
 Mit dieser Docker Application automatisieren Sie die Überprüfung des Quelltextes.
 
-### Verwendete PHP Prüfapplikationen
+### Verwendete PHP Prüf-Applicationen
 Tool | Version
 ------------ | -------------
 PhpStan | 1.4.10
