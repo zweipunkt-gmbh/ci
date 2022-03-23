@@ -14,8 +14,7 @@ input="/src/ci.txt"
 
 if [ ! -e phpstan.neon ]; then
 
-  while IFS= read -r line
-  do
+  while IFS= read -r line ;do
       #file exists run phpstan with memory limit of 4G
       php -d memory_limit=4G vendor/bin/phpstan analyse $line -c /src/phpstan.neon
   done < $input
@@ -23,35 +22,24 @@ else
   echo 'cfg-File phpstan.neon does not exist'
 fi
 
-  echo "$line"
-  # check if config 2 exists PHPMD
-  if [ ! -e phpmd.xml ]
-  then
-  # file exists run phpmd with memory limit of 4G
-    php -d memory_limit=4G vendor/bin/phpmd $line ansi /src/phpmd.xml
-  else
-  # file does not exist skip the test
-    echo 'File phpmd.xml does not exist'
-  fi
+if [ ! -e phpmd.xml ]; then
 
-done < "$input"
+  while IFS= read -r line ;do
+      #file exists run phpmd with memory limit of 4G
+      php -d memory_limit=4G vendor/bin/phpmd $line ansi /src/phpmd.xml
+  done < $input
+else
+  echo 'cfg-File phpmd.xml does not exist'
+fi
 
 echo "Ab hier sollte PHPCodesniffer übernehmen in einer Schleife"
 
-#while IFS= read -r line
-#do
-#    # check if config 3  exists PHPCodesniffer
-#    if [ ! -e .phpcs.xml ]
-#    then
-#    # file exists run phpcs with memory limit of 4G
-#      php -d memory_limit=4G vendor/bin/phpcs --standard=/src/.phpcs.xml $line
-#    else
-#    # file does not exist skip the test
-#      echo 'File .phpcs.xml does not exist'
-#    fi
-#done < $input
-
-
+if [ ! -e .phpcs.xml ]; then
+    while IFS= read -r line; do
+        # file exists run phpcs with memory limit of 4G
+        php -d memory_limit=4G vendor/bin/phpcs --standard=/src/.phpcs.xml $line
+    done < $input
+fi
 
 ## check if config 4 exists PHPUnit
 #if [ -f "source/phpunit.xml" ];
