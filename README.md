@@ -22,10 +22,10 @@ PHP_CodeSniffer | 3.6.2
 ```bash
   docker run --rm -it -v /paht/on/host:/src/source zweipunkt/ci bash
 ```
- - --rm -> entfert den Container nachdem er seine Aufgabe erfüllt hat
- -  -it -> interaktiver Container 
- -  -v  -> Speicher mit Zwei Pfaden von Host-Filesystem : nach Container-Filesystem
- -  bash -> Container Interne Terminal
+ - `--rm -> entfert den Container nachdem er seine Aufgabe erfüllt hat `
+ - `-it -> interaktiver Container `
+ - `-v  -> Speicher mit Zwei Pfaden von Host-Filesystem : nach Container-Filesystem`
+ - `bash -> Container Interne Terminal `
 
 3. Ist der Container gestartet müssen Sie mit
 ```bash
