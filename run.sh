@@ -11,19 +11,17 @@ then
 fi
 
 input="/src/ci.txt"
-while IFS= read -r line
-do
-  echo "$line"
 
-  # check if config 1 exists PHPStan
-  if [ ! -e phpstan.neon ]
-  then
-  # file exists run phpstan with memory limit of 4G
-    php -d memory_limit=4G vendor/bin/phpstan analyse $line -c /src/phpstan.neon
-  else
-  # file does not exist skip the test
-    echo 'File phpstan.neon does not exist'
-  fi
+if [ ! -e phpstan.neon ]; then
+
+  while IFS= read -r line
+  do
+      #file exists run phpstan with memory limit of 4G
+      php -d memory_limit=4G vendor/bin/phpstan analyse $line -c /src/phpstan.neon
+  done < $input
+else
+  echo 'cfg-File phpstan.neon does not exist'
+fi
 
   echo "$line"
   # check if config 2 exists PHPMD
