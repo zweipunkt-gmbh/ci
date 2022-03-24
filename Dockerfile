@@ -21,7 +21,10 @@ RUN composer require --dev phpunit/phpunit:9.5.19
 RUN composer require --dev squizlabs/php_codesniffer:3.6.2
 
 # copy the startscript into the container
-COPY run.sh /app
+COPY scripts/run.sh /app
+
+# copy the config files to the container
+COPY /config/* /app/config/
 
 LABEL maintainer ="ZweiPunkt GmbH <entwicklung@zwei.gmbh>"
 

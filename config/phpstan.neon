@@ -1,0 +1,23 @@
+parameters:
+    level: 5
+
+    scanDirectories:
+        - /src/public/var/cache
+        - /src/public/engine/Library
+        - /src
+#    autoload_files:
+#        - /src/public/autoload.php
+
+    excludePaths:
+        - /src/public/custom/plugins/ZweiPunktOfferDocument/Resources/dompdf
+
+    ignoreErrors:
+        - '#apcu_#'
+        - '#ioncube_#'
+        - '#opcache_#'
+        - '#imagettftext#'
+        - '#class Redis#'
+        - '#Constant STARTTIME#'
+
+    reportUnmatchedIgnoredErrors: false
+    tipsOfTheDay: false
