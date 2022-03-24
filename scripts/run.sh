@@ -12,6 +12,11 @@ fi
 
 input="/src/ci.txt"
 
+if [ ! -e $input ]; then
+    echo "No File with paths provided in /src"
+    exit 1
+fi
+
 for line in $(cat $input); do
   #file exists run phpstan with memory limit of 4G
   php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan.neon $line
