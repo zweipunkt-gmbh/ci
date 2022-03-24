@@ -2,19 +2,19 @@
 
 ## Ihre Agentur für ein erfolgreiches Online Projekt.<br><br>Als Full-Service Shopware Agentur bieten wir Ihnen alles aus einer Hand. Wir betreuen Sie und Ihr Projekt von Beginn an und sorgen für den erfolgreichen Start Ihres E-Commerce Projektes.
 
-Mit dieser Docker Application Gelingt Ihnen die automatische Überprüfung des Quelltextes.
+Mit dieser Docker Application gelingt Ihnen die automatische Überprüfung des Quelltextes.
 
-### Verwendete PHP Prüf-Applicationen
-Tool | Version
------------- | -------------
-PHPStan | 1.4.10
-PHPUnit | 9.5.19
-PHPMD - PHP Mess Detector | 2.11.1
-PHP_CodeSniffer | 3.6.2
+### Verwendete PHP Prüf-Applikationen
+| Tool                      | Version |
+|---------------------------|---------|
+| PHPStan                   | 1.4.10  |
+| PHPUnit                   | 9.5.19  |
+| PHPMD - PHP Mess Detector | 2.11.1  |
+|  PHP_CodeSniffer          | 3.6.2   |
 
 ## First Steps
 
-1. Die CI Tools setzten eine `ci.txt` in jedem Repository vorraus. In dieser Datei werden alle zu überprüfenden Pfade des Quelltextes hinterlegt.
+1. Die CI Tools setzten eine `ci.txt` in jedem Repository voraus. In dieser Datei werden alle zu überprüfenden Pfade des Quelltextes hinterlegt.
 
 
 2. Mit dem Befehl wird das Image aus dem Dockerhub heruntergeladen.
@@ -22,7 +22,7 @@ PHP_CodeSniffer | 3.6.2
   docker pull zweipunkt/ci
 ```
 
-3. Sie starten den Container mit einern Terminal/Konsole.
+3. Sie starten den Container mit einem Terminal/Konsole.
 ```bash
   docker run --rm -it -v /paht/on/host:/src zweipunkt/ci
 ```
