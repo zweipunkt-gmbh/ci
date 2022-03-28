@@ -10,7 +10,7 @@ Mit dieser Docker Application gelingt Ihnen die automatische Überprüfung des Q
 | PHPStan                   | 1.4.10  |
 | PHPUnit                   | 9.5.19  |
 | PHPMD - PHP Mess Detector | 2.11.1  |
-|  PHP_CodeSniffer          | 3.6.2   |
+| PHP_CodeSniffer           | 3.6.2   |
 
 ## First Steps
 
