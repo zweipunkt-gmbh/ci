@@ -20,20 +20,29 @@ if [ ! -e $directoryfile ]; then
     exit 1
 fi
 
-for line in $(cat $directoryfile); do
-  echo "tester: $line"
-  php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan.neon $line
-done
+configrepospecific="/src/phpstan.neon"
 
-for line in $(cat $directoryfile); do
-  echo "tester: $line"
-  php -d memory_limit=4G vendor/bin/phpmd $line ansi /app/config/phpmd.xml
-done
+if [ ! -e $configrepospecific ]; then
+  for line in $(cat $directoryfile); do
+    echo "tester: $line"
+    php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan.neon $line
+  done
+else
+  for line in $(cat $directoryfile); do
+      echo "tester: $line"
+      php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan_include.neon $line
+  done
+fi
 
-for line in $(cat $directoryfile); do
-  echo "tester: $line"
-  php -d memory_limit=4G vendor/bin/phpcs $line --standard=/app/config/.phpcs.xml
-done
+#for line in $(cat $directoryfile); do
+#  echo "tester: $line"
+#  php -d memory_limit=4G vendor/bin/phpmd $line ansi /app/config/phpmd.xml
+#done
+#
+#for line in $(cat $directoryfile); do
+#  echo "tester: $line"
+#  php -d memory_limit=4G vendor/bin/phpcs $line --standard=/app/config/.phpcs.xml
+#done
 
 #for line in $(cat $directoryfile); do
 #  php -d memory_limit=4G vendor/bin/phpunit phpunit.xml
