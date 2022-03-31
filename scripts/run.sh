@@ -15,17 +15,18 @@ fi
 directoryfile="/src/ci.txt"
 
 if [ ! -e $directoryfile ]; then
-    echo "No File with paths provided in /src"
+    echo "No ci.txt found in your repository root"
+    echo "Please add ci.txt to the repository root and provide paths for sourcecode checks"
     exit 1
 fi
 
 for line in $(cat $directoryfile); do
-  #file exists run phpstan with memory limit of 4G
+  echo "tester: $line"
   php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan.neon $line
 done
 
 for line in $(cat $directoryfile); do
-  #file exists run phpmd with memory limit of 4G
+  echo "tester: $line"
   php -d memory_limit=4G vendor/bin/phpmd $line ansi /app/config/phpmd.xml
 done
 
@@ -35,6 +36,5 @@ for line in $(cat $directoryfile); do
 done
 
 #for line in $(cat $directoryfile); do
-#  # file exists run phpunit with memory limit of 4G
 #  php -d memory_limit=4G vendor/bin/phpunit phpunit.xml
 #done
