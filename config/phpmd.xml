@@ -10,9 +10,9 @@
         My custom rule set that checks my code...
     </description>
 
-    <exclude-pattern>*dompdf/*</exclude-pattern>
-    <exclude-pattern>*Controllers/*</exclude-pattern>
-    <exclude-pattern>/*\.(css|js)$</exclude-pattern>
+<!--    <exclude-pattern>*dompdf/*</exclude-pattern>-->
+<!--    <exclude-pattern>*Controllers/*</exclude-pattern>-->
+<!--    <exclude-pattern>/*\.(css|js)$</exclude-pattern>-->
 
     <rule ref="rulesets/codesize.xml">
         <properties>
