@@ -1,0 +1,16 @@
+parameters:
+    level: 5
+
+    ignoreErrors:
+        - '#apcu_#'
+        - '#ioncube_#'
+        - '#opcache_#'
+        - '#imagettftext#'
+        - '#class Redis#'
+        - '#Constant STARTTIME#'
+
+    reportUnmatchedIgnoredErrors: false
+    tipsOfTheDay: false
+
+includes:
+	- /src/phpstan.neon
