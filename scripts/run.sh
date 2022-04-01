@@ -6,7 +6,9 @@ DIR="/src"
 if [ ! -d "$DIR" ]
 then
 # if the dir does not exist the script breaks
- echo 'Directory /src does not exist.'
+ echo 'You probably missed to start the container with the -v option'
+ echo 'Without -v /path/host:/src you can not run this container and the tools inside '
+ echo 'Please re-run the command with -v /path/from/host:/src'
  exit 1
 fi
 

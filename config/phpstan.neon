@@ -1,9 +1,6 @@
 parameters:
     level: 5
 
-#    autoload_files:
-#        - /src/public/autoload.php
-
     ignoreErrors:
         - '#apcu_#'
         - '#ioncube_#'
