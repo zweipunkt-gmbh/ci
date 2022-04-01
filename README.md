@@ -31,3 +31,15 @@ Mit dieser Docker Application gelingt Ihnen die automatische Überprüfung des Q
  - `-v  -> Speicher mit Zwei Pfaden von Host-Filesystem : nach Container-Filesystem`
 
 3. Wenn alle Test durchgelaufen sind, wird im Terminal jede Datei mit einer Zeilennummer und einer Fehlerbeschreibung.
+
+## Commands für Lokale Entwicklungsumgebung
+
+1. Der Docker Befehl um Lokal ein Image aus der Dockerfile zu bauen
+```bash
+docker build -t zweipunkt/ci:1.1.0 .
+```
+
+2.
+```bash
+
+```
