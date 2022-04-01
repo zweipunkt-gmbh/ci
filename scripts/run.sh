@@ -14,6 +14,7 @@ fi
 # this file should be located in the repositories Root-Dir
 directoryfile="/src/ci.txt"
 
+# check if file not exists
 if [ ! -e $directoryfile ]; then
     echo "No ci.txt found in your repository root"
     echo "Please add ci.txt to the repository root and provide paths for sourcecode checks"
@@ -22,25 +23,24 @@ fi
 
 configrepospecific="/src/phpstan.neon"
 
+# checks if not in the mapped repository a phpstan.neon exists
 if [ ! -e $configrepospecific ]; then
   for line in $(cat $directoryfile); do
-    echo "tester: $line"
+    # when no file exists run the main tests
     php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan.neon $line
   done
 else
   for line in $(cat $directoryfile); do
-      echo "tester: $line"
+      # when the config file exissts then run more specific test
       php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan_include.neon $line
   done
 fi
 
 for line in $(cat $directoryfile); do
-  echo "tester: $line"
   php -d memory_limit=4G vendor/bin/phpmd $line ansi /app/config/phpmd.xml
 done
 
 for line in $(cat $directoryfile); do
-  echo "tester: $line"
   php -d memory_limit=4G vendor/bin/phpcs $line --standard=/app/config/.phpcs.xml
 done
 
