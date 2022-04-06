@@ -29,21 +29,21 @@ configrepospecific="/src/phpstan.neon"
 if [ ! -e $configrepospecific ]; then
   for line in $(cat $directoryfile); do
     # when no file exists run the main tests
-    php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan.neon $line
+    php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan.neon /src/$line
   done
 else
   for line in $(cat $directoryfile); do
       # when the config file exissts then run more specific test
-      php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan_include.neon $line
+      php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan_include.neon /src/$line
   done
 fi
 
 for line in $(cat $directoryfile); do
-  php -d memory_limit=4G vendor/bin/phpmd $line ansi /app/config/phpmd.xml
+  php -d memory_limit=4G vendor/bin/phpmd /src/$line ansi /app/config/phpmd.xml
 done
 
 for line in $(cat $directoryfile); do
-  php -d memory_limit=4G vendor/bin/phpcs $line --standard=/app/config/.phpcs.xml
+  php -d memory_limit=4G vendor/bin/phpcs /src/$line --standard=/app/config/.phpcs.xml
 done
 
 #for line in $(cat $directoryfile); do
