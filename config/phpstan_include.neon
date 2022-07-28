@@ -1,6 +1,9 @@
 parameters:
     level: 5
 
+    paths:
+        - /src      # mapped path from host into container
+
     ignoreErrors:
         - '#apcu_#'
         - '#ioncube_#'
@@ -13,4 +16,4 @@ parameters:
     tipsOfTheDay: false
 
 includes:
-	- /src/phpstan.neon
+	- /src/phpstan-baseline.neon

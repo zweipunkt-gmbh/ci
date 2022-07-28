@@ -14,38 +14,46 @@ fi
 
 # specify the path where the file with the DIR's is located
 # this file should be located in the repositories Root-Dir
-directoryfile="/src/ci.txt"
+pluginDirFile="/src/ci.txt"
 
 # check if file not exists
-if [ ! -e $directoryfile ]; then
+if [ ! -e $pluginDirFile ]; then
     echo "No ci.txt found in your repository root"
     echo "Please add ci.txt to the repository root and provide paths for sourcecode checks"
     exit 1
 fi
 
-configrepospecific="/src/phpstan.neon"
+PHPStanBaselineFile="/src/phpstan-baseline.xml"
+PHPMDBaselineFile="/src/phpmd.baseline.xml"
+
 
 # checks if not in the mapped repository a phpstan.neon exists
-if [ ! -e $configrepospecific ]; then
-  for line in $(cat $directoryfile); do
+if [ ! -e $PHPStanBaselineFile ]; then
+  for line in $(cat $pluginDirFile); do
     # when no file exists run the main tests
     php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan.neon /src/$line
   done
 else
-  for line in $(cat $directoryfile); do
-      # when the config file exissts then run more specific test
-      php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan_include.neon /src/$line
+  for line in $(cat $pluginDirFile); do
+    # when the config file exissts then run more specific test
+    php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan_include.neon /src/$line
   done
 fi
 
-for line in $(cat $directoryfile); do
-  php -d memory_limit=4G vendor/bin/phpmd /src/$line ansi /app/config/phpmd.xml
+if [ ! -e $PHPMDBaselineFile ]; then
+  for line in $(cat $pluginDirFile); do
+    php -d memory_limit=4G vendor/bin/phpmd /src/$line ansi ./config/phpmd.xml
+  done
+else
+  for line in $(cat $pluginDirFile); do
+    php -d memory_limit=4G vendor/bin/phpmd /src/$line ansi ./config/phpmd.xml --baseline-file /src/phpmd.baseline.xml
+  done
+fi
+
+for line in $(cat $pluginDirFile); do
+  php -d memory_limit=4G vendor/bin/phpcs /src/$line --standard=./config/.phpcs.xml
 done
 
-for line in $(cat $directoryfile); do
-  php -d memory_limit=4G vendor/bin/phpcs /src/$line --standard=/app/config/.phpcs.xml
-done
-
-#for line in $(cat $directoryfile); do
+#for line in $(cat $pluginDirFile); do
 #  php -d memory_limit=4G vendor/bin/phpunit phpunit.xml
 #done
