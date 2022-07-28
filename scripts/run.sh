@@ -23,10 +23,12 @@ if [ ! -e $directoryfile ]; then
     exit 1
 fi
 
-configrepospecific="/src/phpstan.neon"
+cfgspecificPHPSTAN="/src/phpstan.neon"
+cfgspecificPHPMD="/src/phpmd.xml"
+
 
 # checks if not in the mapped repository a phpstan.neon exists
-if [ ! -e $configrepospecific ]; then
+if [ ! -e $cfgspecificPHPSTAN ]; then
   for line in $(cat $directoryfile); do
     # when no file exists run the main tests
     php -d memory_limit=4G vendor/bin/phpstan analyse -c ./config/phpstan.neon /src/$line
@@ -38,9 +40,15 @@ else
   done
 fi
 
-for line in $(cat $directoryfile); do
-  php -d memory_limit=4G vendor/bin/phpmd /src/$line ansi /app/config/phpmd.xml
-done
+if [ ! -e $cfgspecificPHPMD ]; then
+ for line in $(cat $directoryfile); do
+   php -d memory_limit=4G vendor/bin/phpmd /src/$line ansi /app/config/phpmd.xml
+ done
+else
+  for line in $(cat $directoryfile); do
+    php -d memory_limit=4G vendor/bin/phpmd /src/$line ansi /src/phpmd.xml
+  done
+fi
 
 for line in $(cat $directoryfile); do
   php -d memory_limit=4G vendor/bin/phpcs /src/$line --standard=/app/config/.phpcs.xml
