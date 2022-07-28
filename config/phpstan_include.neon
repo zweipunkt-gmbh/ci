@@ -1,6 +1,9 @@
 parameters:
     level: 5
 
+    paths:
+        - /src      # mapped path from host into container
+
     ignoreErrors:
         - '#apcu_#'
         - '#ioncube_#'
