@@ -13,4 +13,4 @@ parameters:
     tipsOfTheDay: false
 
 includes:
-	- /src/phpstan.neon
+	- /src/phpstan-baseline.neon
