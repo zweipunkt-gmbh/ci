@@ -23,7 +23,7 @@ if [ ! -e $pluginDirFile ]; then
     exit 1
 fi
 
-PHPStanBaselineFile="/src/phpstan-baseline.xml"
+PHPStanBaselineFile="/src/phpstan-baseline.neon"
 PHPMDBaselineFile="/src/phpmd.baseline.xml"
 
 
